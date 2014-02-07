@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>07745A22-5056-46CD-9E66-E60072F1900B</string>
+	<key>IDESourceControlProjectName</key>
+	<string>million</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7CD9B625-DC11-46B5-9455-D4DAAB10333A</key>
+		<string>https://github.com/gump2012/million.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iospro/million/million.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7CD9B625-DC11-46B5-9455-D4DAAB10333A</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/gump2012/million.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7CD9B625-DC11-46B5-9455-D4DAAB10333A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7CD9B625-DC11-46B5-9455-D4DAAB10333A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>million</string>
+		</dict>
+	</array>
+</dict>
+</plist>
