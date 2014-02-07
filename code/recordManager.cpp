@@ -21,7 +21,8 @@ public:
 };
 
 recordManager::recordManager()
-:itotalp(0)
+:itotalp(0),
+iTotalroad(0)
 {
     
 }
@@ -194,6 +195,17 @@ void recordManager::createResult(int *markarr)
     }
     
     if (isRight) {
+        iTotalroad++;
+        
+        printf("\n");
+        std::vector<MRECORD *>::iterator itresultend = solutionArr.end();
+        for (std::vector<MRECORD *>::iterator resultit = solutionArr.begin();
+             resultit != itresultend; ++resultit) {
+            MRECORD *mresult = *resultit;
+            printf("%d  ",mresult->m);
+        }
+        printf("   %d\n",iTotalroad);
+        
         getMin(solutionArr);
     }
 }

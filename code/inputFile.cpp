@@ -162,4 +162,6 @@ void inputFile::putoutResult()
     }
     
     printf("\n");
+    
+    printf("%d",RecordMag->iTotalroad);
 }

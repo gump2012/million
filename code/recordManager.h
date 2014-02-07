@@ -33,6 +33,7 @@ public:
     int itotalp;
     int iChemicalCount;
     int iTotalnum;
+    int iTotalroad;
 };
 
 #define RecordMag recordManager::Instance()
