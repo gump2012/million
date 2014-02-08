@@ -28,6 +28,14 @@ public:
     void createResult(int *markarr);
     void getM();
     void createTree();
+    void fillNextLayer(int ilayer);
+    void initTopNode();
+    void fillLastLayer();
+    void fillNode(MNODE *pNode);
+    bool isSubNode(int iNode,MNODE *pNode);
+    void changeBy01();
+    void calculateMinRoad();
+    int  getNodeWeight(MNODE *pNode);
     
     static recordManager* Instance();
     std::vector<MRECORD*> recordArr;
@@ -36,7 +44,7 @@ public:
     int itotalp;
     int iChemicalCount;
     int iTotalnum;
-    int iTotalroad;
+    std::vector<MNODE *> layerFillNodeArr;//当前要填充层的所有节点
     
     MNODE topNode;//顶点
 };

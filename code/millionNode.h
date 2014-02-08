@@ -12,6 +12,7 @@
 typedef struct millionNode
 {
     millionNode                 *topNode;//顶点
+    int                         iNode;//节点值
     int                         iWeight;//权
     int                         iEdge;//边
     std::vector<millionNode*>   subNodeArr;//子结点数组
