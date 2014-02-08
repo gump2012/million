@@ -43,7 +43,8 @@ void recordManager::calculateResult()
     createTree();
     calculateMinRoad();
     
-    getResult();
+    //changeBy01();
+    //getResult();
 }
 
 void recordManager::getResult()
@@ -290,7 +291,7 @@ bool recordManager::isSubNode(int iNode, MNODE *pNode)
     
     MNODE *top = pNode->topNode;
     while (top != NULL) {
-        if (top->iNode == iNode) {
+        if (top->iNode == iNode || top->iNode == 1) {
             bSub = false;
             break;
         }
@@ -381,13 +382,15 @@ void recordManager::calculateMinRoad()
         mArr.push_back(top->iEdge);
         top = top->topNode;
     }
+    
+    std::sort(mArr.begin(), mArr.end(),Csort());
 }
 
 int recordManager::getNodeWeight(MNODE *pNode)
 {
     int iTotal = 0;
     MNODE *top = pNode;
-    while (top) {
+    while (top->topNode) {
         iTotal += top->iWeight;
         top = top->topNode;
     }

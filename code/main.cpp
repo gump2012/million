@@ -14,14 +14,14 @@ using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    if (argc != 2) {
-        printf("parameter error!");
-        
-        return 0;
-    }
-  
-    InputF->readFile(argv[1]);
-    //InputF->readFile("/Users/lishiming/Desktop/mill.txt");
+//    if (argc != 2) {
+//        printf("parameter error!");
+//        
+//        return 0;
+//    }
+//  
+//    InputF->readFile(argv[1]);
+    InputF->readFile("/Users/lishiming/Desktop/million/testfile/t1.txt");
     InputF->putoutResult();
     
     return 0;
