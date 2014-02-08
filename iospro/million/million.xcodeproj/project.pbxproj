@@ -25,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3589EE7018A5C8BA001D7659 /* millionNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = millionNode.h; path = ../../code/millionNode.h; sourceTree = "<group>"; };
 		35B763D318A4893A00D97E20 /* million */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = million; sourceTree = BUILT_PRODUCTS_DIR; };
 		35B763DF18A49CE300D97E20 /* inputFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = inputFile.cpp; path = ../../code/inputFile.cpp; sourceTree = "<group>"; };
 		35B763E018A49CE300D97E20 /* inputFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = inputFile.h; path = ../../code/inputFile.h; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 				35B763E218A49CE300D97E20 /* millionRecord.h */,
 				35B763E318A49CE300D97E20 /* recordManager.cpp */,
 				35B763E418A49CE300D97E20 /* recordManager.h */,
+				3589EE7018A5C8BA001D7659 /* millionNode.h */,
 			);
 			name = million;
 			sourceTree = "<group>";
@@ -234,6 +236,7 @@
 				35B763DC18A4893A00D97E20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

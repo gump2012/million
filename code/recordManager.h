@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "millionRecord.h"
+#include "millionNode.h"
 
 class recordManager
 {
@@ -25,6 +26,8 @@ public:
     bool isSolution(std::vector<MRECORD*>& sarr,const MRECORD* sr);
     void getMin(std::vector<MRECORD*>& sarr);
     void createResult(int *markarr);
+    void getM();
+    void createTree();
     
     static recordManager* Instance();
     std::vector<MRECORD*> recordArr;
@@ -34,6 +37,8 @@ public:
     int iChemicalCount;
     int iTotalnum;
     int iTotalroad;
+    
+    MNODE topNode;//顶点
 };
 
 #define RecordMag recordManager::Instance()

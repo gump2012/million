@@ -40,18 +40,12 @@ recordManager* recordManager::Instance()
 
 void recordManager::calculateResult()
 {
-    //get m
-    iTotalnum = (int)recordArr.size();
-    int ibeginm = 2;
-    int iTotalBym = 2;
-    if (iTotalnum > 2) {
-        while (iTotalnum != iTotalBym) {
-            ibeginm++;
-            iTotalBym = iTotalBym + (ibeginm - 1) * 2;
-        }
-    }
+    getM();
+    createTree();
     
-    iChemicalCount = ibeginm;
+    
+    
+    
     
     //01 change
     int *tempNum = new int[iTotalnum];
@@ -208,4 +202,28 @@ void recordManager::createResult(int *markarr)
         
         getMin(solutionArr);
     }
+}
+
+void recordManager::getM()
+{
+    iTotalnum = (int)recordArr.size();
+    int ibeginm = 2;
+    int iTotalBym = 2;
+    if (iTotalnum > 2) {
+        while (iTotalnum != iTotalBym) {
+            ibeginm++;
+            iTotalBym = iTotalBym + (ibeginm - 1) * 2;
+        }
+    }
+    
+    iChemicalCount = ibeginm;
+}
+
+void recordManager::createTree()
+{
+    topNode.topNode = NULL;
+    topNode.iWeight = -1;
+    topNode.iEdge = -1;
+    
+    
 }
