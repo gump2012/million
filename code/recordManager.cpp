@@ -43,8 +43,8 @@ void recordManager::calculateResult()
     createTree();
     calculateMinRoad();
     
-    //changeBy01();
-    //getResult();
+//    changeBy01();
+//    getResult();
 }
 
 void recordManager::getResult()
@@ -167,7 +167,7 @@ void recordManager::createTree()
 void recordManager::fillNextLayer(int ilayer)
 {
     layerFillNodeArr.clear();
-    std::vector<MNODE *> tempNodeArr;
+    tempNodeArr.clear();
     std::vector<MNODE *>::iterator itresultend = topNode.subNodeArr.end();
     for (std::vector<MNODE *>::iterator resultit = topNode.subNodeArr.begin();
          resultit != itresultend; ++resultit) {
@@ -176,36 +176,44 @@ void recordManager::fillNextLayer(int ilayer)
     }
     
     for (int i = 1; i < ilayer; ++i) {
-        tempNodeArr.clear();
-        std::vector<MNODE *>::iterator itresultend = layerFillNodeArr.end();
-        for (std::vector<MNODE *>::iterator resultit = layerFillNodeArr.begin();
-             resultit != itresultend; ++resultit) {
-            MNODE *mresult = *resultit;
-            if (mresult->subNodeArr.size() != 0) {
-                std::vector<MNODE *>::iterator itresultend = layerFillNodeArr.end();
-                for (std::vector<MNODE *>::iterator resultit = layerFillNodeArr.begin();
-                     resultit != itresultend; ++resultit) {
-                    MNODE *mresult = *resultit;
-                    tempNodeArr.push_back(mresult);
-                }
-            }
-        }
-        
-        layerFillNodeArr.clear();
-        
-        std::vector<MNODE *>::iterator itresultTempEnd = tempNodeArr.end();
-        for (std::vector<MNODE *>::iterator resultit = tempNodeArr.begin();
-             resultit != itresultTempEnd; ++resultit) {
-            MNODE *mresult = *resultit;
-            layerFillNodeArr.push_back(mresult);
-        }
+        moveToNextLayer();
     }
     
     std::vector<MNODE *>::iterator itresultLayerEnd = layerFillNodeArr.end();
     for (std::vector<MNODE *>::iterator resultit = layerFillNodeArr.begin();
          resultit != itresultLayerEnd; ++resultit) {
         MNODE *mresult = *resultit;
+        
         fillNode(mresult);
+    }
+    
+    moveToNextLayer();
+}
+
+void recordManager::moveToNextLayer()
+{
+    tempNodeArr.clear();
+    std::vector<MNODE *>::iterator itresultend = layerFillNodeArr.end();
+    for (std::vector<MNODE *>::iterator resultit = layerFillNodeArr.begin();
+         resultit != itresultend; ++resultit) {
+        MNODE *mresult = *resultit;
+        if (mresult->subNodeArr.size() != 0) {
+            std::vector<MNODE *>::iterator itresultend = mresult->subNodeArr.end();
+            for (std::vector<MNODE *>::iterator resultit = mresult->subNodeArr.begin();
+                 resultit != itresultend; ++resultit) {
+                MNODE *mresult = *resultit;
+                tempNodeArr.push_back(mresult);
+            }
+        }
+    }
+    
+    layerFillNodeArr.clear();
+    
+    std::vector<MNODE *>::iterator itresultTempEnd = tempNodeArr.end();
+    for (std::vector<MNODE *>::iterator resultit = tempNodeArr.begin();
+         resultit != itresultTempEnd; ++resultit) {
+        MNODE *mresult = *resultit;
+        layerFillNodeArr.push_back(mresult);
     }
 }
 
@@ -227,6 +235,7 @@ void recordManager::initTopNode()
             subnode->iEdge = mresult->m;
             subnode->iNode = mresult->c2;
             
+            
             topNode.subNodeArr.push_back(subnode);
         }
     }
@@ -234,7 +243,7 @@ void recordManager::initTopNode()
 
 void recordManager::fillLastLayer()
 {
-    std::vector<MNODE *> tempNodeArr;
+    tempNodeArr.clear();
     std::vector<MNODE *>::iterator itresultLayerEnd = layerFillNodeArr.end();
     for (std::vector<MNODE *>::iterator resultit = layerFillNodeArr.begin();
          resultit != itresultLayerEnd; ++resultit) {
@@ -273,7 +282,7 @@ void recordManager::fillNode(MNODE *pNode)
     for (std::vector<MRECORD *>::iterator resultit = recordArr.begin();
          resultit != itresultend; ++resultit) {
         MRECORD *mresult = *resultit;
-        if (isSubNode(mresult->c1, pNode)) {
+        if (isSubNode(mresult, pNode)) {
             MNODE *subnode = new MNODE;
             subnode->topNode = pNode;
             subnode->iWeight = mresult->p;
@@ -285,19 +294,26 @@ void recordManager::fillNode(MNODE *pNode)
     }
 }
 
-bool recordManager::isSubNode(int iNode, MNODE *pNode)
+bool recordManager::isSubNode(MRECORD *record, MNODE *pNode)
 {
     bool bSub = true;
     
-    MNODE *top = pNode->topNode;
-    while (top != NULL) {
-        if (top->iNode == iNode || top->iNode == 1) {
-            bSub = false;
-            break;
+    if (pNode->iNode == record->c1) {
+        MNODE *top = pNode->topNode;
+        while (top != NULL) {
+            if (top->iNode == record->c2) {
+                bSub = false;
+                break;
+            }
+            
+            top = top->topNode;
         }
-        
-        top = top->topNode;
     }
+    else
+    {
+        bSub = false;
+    }
+    
     
     return bSub;
 }
@@ -359,7 +375,7 @@ void recordManager::changeBy01()
 void recordManager::calculateMinRoad()
 {
     MNODE *minNode = NULL;
-    int itotalWeight = 0;
+    itotalp = 0;
     std::vector<MNODE *>::iterator itresultLayerEnd = layerFillNodeArr.end();
     for (std::vector<MNODE *>::iterator resultit = layerFillNodeArr.begin();
          resultit != itresultLayerEnd; ++resultit) {
@@ -367,19 +383,21 @@ void recordManager::calculateMinRoad()
         int iTempTotalW = getNodeWeight(mNodeResult);
         if (minNode == NULL) {
             minNode = mNodeResult;
-            itotalWeight = iTempTotalW;
+            itotalp = iTempTotalW;
         }
-        else if (itotalWeight > iTempTotalW)
+        else if (itotalp > iTempTotalW)
         {
             minNode = mNodeResult;
-            itotalWeight = iTempTotalW;
+            itotalp = iTempTotalW;
         }
     }
     
     mArr.clear();
     MNODE *top = minNode;
     while (top) {
-        mArr.push_back(top->iEdge);
+        if (top->iEdge != -1) {
+            mArr.push_back(top->iEdge);
+        }
         top = top->topNode;
     }
     
