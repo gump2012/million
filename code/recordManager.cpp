@@ -72,19 +72,6 @@ void recordManager::createTree()
 
 void recordManager::fillNextLayer(int ilayer)
 {
-    layerFillNodeArr.clear();
-    tempNodeArr.clear();
-    std::vector<MNODE *>::iterator itresultend = topNode.subNodeArr.end();
-    for (std::vector<MNODE *>::iterator resultit = topNode.subNodeArr.begin();
-         resultit != itresultend; ++resultit) {
-        MNODE *mresult = *resultit;
-        layerFillNodeArr.push_back(mresult);
-    }
-    
-    for (int i = 1; i < ilayer; ++i) {
-        moveToNextLayer();
-    }
-    
     std::vector<MNODE *>::iterator itresultLayerEnd = layerFillNodeArr.end();
     for (std::vector<MNODE *>::iterator resultit = layerFillNodeArr.begin();
          resultit != itresultLayerEnd; ++resultit) {
@@ -144,6 +131,15 @@ void recordManager::initTopNode()
             
             topNode.subNodeArr.push_back(subnode);
         }
+    }
+    
+    layerFillNodeArr.clear();
+    tempNodeArr.clear();
+    std::vector<MNODE *>::iterator itopend = topNode.subNodeArr.end();
+    for (std::vector<MNODE *>::iterator resultit = topNode.subNodeArr.begin();
+         resultit != itopend; ++resultit) {
+        MNODE *mresult = *resultit;
+        layerFillNodeArr.push_back(mresult);
     }
 }
 
