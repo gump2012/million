@@ -22,10 +22,6 @@ public:
     ~recordManager();
     
     void calculateResult();
-    void getResult();
-    bool isSolution(std::vector<MRECORD*>& sarr,const MRECORD* sr);
-    void getMin(std::vector<MRECORD*>& sarr);
-    void createResult(int *markarr);
     void getM();
     void createTree();
     void fillNextLayer(int ilayer);
@@ -33,18 +29,15 @@ public:
     void fillLastLayer();
     void fillNode(MNODE *pNode);
     bool isSubNode(MRECORD *record, MNODE *pNode);
-    void changeBy01();
     void calculateMinRoad();
     int  getNodeWeight(MNODE *pNode);
     void moveToNextLayer();
     
     static recordManager* Instance();
     std::vector<MRECORD*> recordArr;
-    std::vector<MRECORD*> resultArr;
     std::vector<int>      mArr;
     int itotalp;
     int iChemicalCount;
-    int iTotalnum;
     std::vector<MNODE *> layerFillNodeArr;//当前要填充层的所有节点
     std::vector<MNODE *> tempNodeArr;//临时存储节点数组
     MNODE topNode;//顶点
